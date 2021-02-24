@@ -6,6 +6,7 @@ on:
     - master
     paths:
     - 'assets/lambda/**'
+    - '.github/workflows/admin.yml'
 
 jobs:
   deploy:
