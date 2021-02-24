@@ -1,0 +1,20 @@
+openapi: '3.0.2'
+info:
+  title: Xyro
+  version: '1.0'
+servers:
+  - url: https://admin-api.garage.gg
+
+components:
+  schemas:
+    login:
+      type: object
+      properties:
+        password:
+          type: string
+paths:
+  /login:
+    post:
+      responses:
+        '200':
+          description: OK
