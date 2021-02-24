@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{ $style := resources.Get "sass/main.scss" | toCSS | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.Permalink }}">
+    <link href=https://use.fontawesome.com/releases/v5.13.1/css/all.css rel=stylesheet>
+
+    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ .Params.description }}" />
+</head>
+
+<body>
+    <header class="site-header sticky-top">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="/"><h1 class="fs-4 mb-0 text-primary">{{$.Site.Title}}</h1></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/items/">Items</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main">
+        {{ block "main" . }}
+        <!-- The part of the page that begins to differ between templates -->
+        {{ end }}
+    </main>
+
+    <footer id="footer" class="bg-secondary mt-5">
+        <div class="py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+
+                        <!-- Copyright -->
+                        <p class="mb-1 mb-md-0 small">
+                            © 2021-<script>document.write(new Date().getFullYear())</script>&nbsp; Stumpyinc
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://polyfill.io/v3/polyfill.js?features=es5,es6,es7&flags=gated"></script>
+    {{ $js := resources.Get "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" | fingerprint }}
+    <script src="{{ $js.Permalink }}"></script>
+
+</body>
+
+</html>
