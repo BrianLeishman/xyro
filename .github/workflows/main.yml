@@ -4,6 +4,8 @@ on:
   push:
     branches:
     - master
+    paths:
+    - 'assets/lambda/**'
 
 jobs:
   deploy:
@@ -37,4 +39,5 @@ jobs:
           aws-region: us-east-1
 
       - name: deploy lambda
+        working-directory: assets/lambda/main
         run: aws lambda update-function-code --function-name ${{ secrets.MAIN_LAMBDA }} --zip-file fileb://function.zip
